@@ -1,0 +1,502 @@
+/* =========================================================
+   DUO STORE — Order Tracking Page Styles
+   OLD MONEY / QUIET LUXURY
+   ========================================================= */
+
+/* Страница отслеживания */
+.tracking-page {
+    min-height: 100vh;
+    padding: calc(var(--header-h) + 40px) 0 80px;
+    background: var(--bg);
+}
+
+/* Заголовок */
+.tracking-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.tracking-title {
+    font-family: var(--font-display);
+    font-size: clamp(32px, 5vw, 48px);
+    font-weight: 600;
+    color: var(--text);
+    letter-spacing: -0.02em;
+    margin-bottom: 12px;
+}
+
+.tracking-subtitle {
+    font-size: 16px;
+    color: var(--muted);
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+/* Карточка формы */
+.tracking-card {
+    max-width: 560px;
+    margin: 0 auto 48px;
+    padding: 32px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card);
+}
+
+.tracking-form-grid {
+    display: grid;
+    gap: 24px;
+    margin-bottom: 24px;
+}
+
+@media (min-width: 560px) {
+    .tracking-form-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+/* Группа формы */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text);
+}
+
+.form-label .icon {
+    width: 18px;
+    height: 18px;
+    color: var(--muted);
+}
+
+.form-input {
+    width: 100%;
+    height: 48px;
+    padding: 0 16px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--bg-soft);
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 15px;
+    transition: all var(--duration-fast) var(--ease);
+}
+
+.form-input::placeholder {
+    color: var(--muted-2);
+}
+
+.form-input:hover {
+    border-color: var(--line-strong);
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+.form-input.is-invalid {
+    border-color: var(--danger);
+}
+
+.form-hint {
+    font-size: 12px;
+    color: var(--muted-2);
+}
+
+/* Ошибка */
+.tracking-error {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 16px;
+    margin-bottom: 20px;
+    background: var(--danger-soft);
+    border: 1px solid rgba(157, 41, 51, 0.2);
+    border-radius: var(--radius);
+    color: var(--danger);
+    font-size: 14px;
+}
+
+.tracking-error .icon {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+}
+
+/* Кнопка отправки */
+.tracking-submit {
+    position: relative;
+    width: 100%;
+    height: 52px;
+    font-size: 15px;
+}
+
+.tracking-submit:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.tracking-submit .btn-loader {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.spinner-icon {
+    width: 24px;
+    height: 24px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Результат поиска */
+.tracking-result {
+    max-width: 640px;
+    margin: 0 auto 48px;
+    animation: fadeInUp 0.4s var(--ease-out);
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.tracking-result-card {
+    padding: 32px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card);
+}
+
+.tracking-result-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 28px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--line);
+}
+
+.tracking-result-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: var(--accent-soft);
+    color: var(--accent);
+}
+
+.tracking-result-icon .icon {
+    width: 28px;
+    height: 28px;
+}
+
+.tracking-result-info {
+    flex: 1;
+}
+
+.tracking-result-title {
+    font-family: var(--font-display);
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--text);
+}
+
+.tracking-result-title span {
+    font-family: var(--font-body);
+    color: var(--accent);
+}
+
+.tracking-result-date {
+    font-size: 14px;
+    color: var(--muted);
+    margin-top: 4px;
+}
+
+/* Статус */
+.tracking-status-section {
+    margin-bottom: 32px;
+}
+
+.tracking-status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 18px;
+    border-radius: var(--radius-full);
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.tracking-status-badge .status-icon .icon {
+    width: 18px;
+    height: 18px;
+}
+
+/* Статусы заказов */
+.tracking-status-badge[data-status="new"] {
+    background: var(--warning-soft);
+    color: var(--warning);
+}
+
+.tracking-status-badge[data-status="processing"] {
+    background: rgba(59, 130, 246, 0.1);
+    color: #3B82F6;
+}
+
+.tracking-status-badge[data-status="confirmed"] {
+    background: rgba(139, 115, 85, 0.12);
+    color: var(--taupe);
+}
+
+.tracking-status-badge[data-status="shipped"] {
+    background: rgba(99, 102, 241, 0.1);
+    color: #6366F1;
+}
+
+.tracking-status-badge[data-status="delivered"] {
+    background: var(--success-soft);
+    color: var(--success);
+}
+
+.tracking-status-badge[data-status="cancelled"] {
+    background: var(--danger-soft);
+    color: var(--danger);
+}
+
+.tracking-status-description {
+    font-size: 15px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+/* Прогресс-бар */
+.tracking-progress {
+    margin-bottom: 28px;
+}
+
+.progress-line {
+    position: relative;
+    height: 4px;
+    background: var(--line);
+    border-radius: 2px;
+    margin-bottom: 8px;
+}
+
+.progress-fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background: var(--accent);
+    border-radius: 2px;
+    transition: width 0.5s var(--ease-out);
+}
+
+.progress-steps {
+    display: flex;
+    justify-content: space-between;
+}
+
+.progress-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+}
+
+.step-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--line-strong);
+    border: 2px solid var(--bg);
+    transition: all var(--duration-fast) var(--ease);
+}
+
+.step-label {
+    font-size: 11px;
+    color: var(--muted);
+    text-align: center;
+    white-space: nowrap;
+}
+
+/* Активный шаг */
+.progress-step.is-active .step-dot {
+    background: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+.progress-step.is-active .step-label {
+    color: var(--text);
+    font-weight: 600;
+}
+
+/* Завершённый шаг */
+.progress-step.is-complete .step-dot {
+    background: var(--accent);
+}
+
+.progress-step.is-complete .step-label {
+    color: var(--accent);
+}
+
+/* Действия */
+.tracking-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+}
+
+.tracking-actions .btn {
+    flex: 1;
+    min-width: 160px;
+    justify-content: center;
+}
+
+/* Подсказки */
+.tracking-tips {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 32px;
+    background: var(--bg-warm);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+}
+
+.tracking-tips-title {
+    font-family: var(--font-display);
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 24px;
+    text-align: center;
+}
+
+.tracking-tips-grid {
+    display: grid;
+    gap: 20px;
+}
+
+@media (min-width: 640px) {
+    .tracking-tips-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.tracking-tip {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    background: var(--card);
+    border: 1px solid var(--line-soft);
+    border-radius: var(--radius);
+}
+
+.tip-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    margin-bottom: 16px;
+    border-radius: 50%;
+    background: var(--accent-soft);
+    color: var(--accent);
+}
+
+.tip-icon .icon {
+    width: 24px;
+    height: 24px;
+}
+
+.tip-content h4 {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 6px;
+}
+
+.tip-content p {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.5;
+}
+
+.tip-content a {
+    color: var(--accent);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+.tip-content a:hover {
+    color: var(--accent-dark);
+}
+
+/* Адаптивность */
+@media (max-width: 640px) {
+    .tracking-card,
+    .tracking-result-card,
+    .tracking-tips {
+        padding: 24px 20px;
+    }
+
+    .tracking-result-header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .progress-steps {
+        flex-wrap: wrap;
+        gap: 12px 0;
+    }
+
+    .progress-step {
+        flex: 0 0 calc(33.333% - 8px);
+    }
+
+    .tracking-actions {
+        flex-direction: column;
+    }
+
+    .tracking-actions .btn {
+        width: 100%;
+    }
+}
+
+/* Скрытые элементы */
+.tracking-result[hidden] {
+    display: none;
+}
+
+

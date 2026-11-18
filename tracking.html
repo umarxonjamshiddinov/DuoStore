@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#F7F5F0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Отследить заказ — DUO STORE</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%23111111'/%3E%3Ctext x='50' y='69' font-family='Arial, sans-serif' font-size='54' font-weight='bold' text-anchor='middle' fill='%23ffffff'%3ED%3C/text%3E%3C/svg%3E">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/store.css">
+    <link rel="stylesheet" href="css/tracking.css">
+</head>
+<body>
+
+<a class="skip-link" href="#tracking-form">Перейти к форме</a>
+
+<!-- Шапка -->
+<header class="header store-header" id="header">
+    <div class="container header-inner">
+        <a href="index.html" class="logo" aria-label="DUO STORE — главная">DUO<span>STORE</span></a>
+        <nav class="nav" id="nav" aria-label="Основная навигация">
+            <a href="index.html">Главная</a>
+            <a href="index.html#catalog">Каталог</a>
+            <a href="delivery.html">Доставка</a>
+            <a href="contacts.html">Контакты</a>
+            <a href="tracking.html" aria-current="page">Статус заказа</a>
+            <a href="about.html">О нас</a>
+        </nav>
+        <div class="header-actions">
+            
+            <button class="icon-btn wishlist-btn" id="wishlistBtn" type="button" aria-label="Избранное: 0">
+                <svg class="icon " viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0l-1 1-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1 7.8 7.8 7.8-7.8 1-1a5.5 5.5 0 0 0 0-7.8Z"/></svg><span class="badge" id="wishBadge" hidden>0</span>
+            </button>
+            <button class="cart-btn" id="cartOpen" type="button" aria-label="Корзина: 0">
+                <svg class="icon " viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6h15l-1.5 9h-12L5 3H2"/><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/></svg><span class="cart-btn-text">Корзина</span><span class="badge badge--solid" id="cartBadge">0</span>
+            </button>
+            <button class="burger" id="burger" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="nav">
+                <svg class="icon icon-menu" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg><svg class="icon icon-close" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+            </button>
+        </div>
+    </div>
+</header>
+
+<!-- Основной контент -->
+<main class="tracking-page" id="main">
+    <div class="container">
+        <!-- Заголовок страницы -->
+        <div class="tracking-header">
+            <h1 class="tracking-title">Отследить заказ</h1>
+            <p class="tracking-subtitle">Введите номер заказа с сайта и телефон, указанный при оформлении. Заказы из Telegram уточняйте в чате магазина.</p>
+        </div>
+
+        <!-- Форма поиска -->
+        <div class="tracking-card" id="tracking-form">
+            <form id="trackingForm" class="tracking-form" novalidate>
+                <div class="tracking-form-grid">
+                    <div class="form-group">
+                        <label for="orderNumber" class="form-label">
+                            <svg class="icon"><use href="#i-package"/></svg>
+                            Номер заказа
+                        </label>
+                        <input 
+                            type="text" 
+                            id="orderNumber" 
+                            name="orderNumber" 
+                            class="form-input" 
+                            placeholder="ORD-XXXXXXXX-XXXX"
+                            autocomplete="off"
+                            required
+                            aria-describedby="orderNumberHint"
+                        >
+                        <span id="orderNumberHint" class="form-hint">Например: ORD-LZXYZABC-A1B2</span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="orderPhone" class="form-label">
+                            <svg class="icon"><use href="#i-phone"/></svg>
+                            Номер телефона
+                        </label>
+                        <input 
+                            type="tel" 
+                            id="orderPhone" 
+                            name="orderPhone" 
+                            class="form-input" 
+                            placeholder="+998 __ ___ __ __"
+                            autocomplete="tel"
+                            inputmode="tel"
+                            required
+                            aria-describedby="orderPhoneHint"
+                        >
+                        <span id="orderPhoneHint" class="form-hint">Телефон, указанный при оформлении</span>
+                    </div>
+                </div>
+
+                <div class="tracking-error" id="trackingError" role="alert" hidden>
+                    <svg class="icon"><use href="#i-alert"/></svg>
+                    <span id="trackingErrorText"></span>
+                </div>
+
+                <button type="submit" class="btn btn--primary btn--lg tracking-submit" id="trackingSubmitBtn">
+                    <span class="btn-text">Найти заказ</span>
+                    <span class="btn-loader" hidden>
+                        <svg class="icon spinner-icon" viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="3" fill="none" stroke-dasharray="32" stroke-linecap="round"/>
+                        </svg>
+                    </span>
+                </button>
+            </form>
+        </div>
+
+        <!-- Результат поиска -->
+        <div class="tracking-result" id="trackingResult" tabindex="-1" hidden>
+            <div class="tracking-result-card">
+                <div class="tracking-result-header">
+                    <div class="tracking-result-icon" id="resultIcon">
+                        <svg class="icon"><use href="#i-package"/></svg>
+                    </div>
+                    <div class="tracking-result-info">
+                        <h2 class="tracking-result-title">Заказ <span id="resultOrderNumber"></span></h2>
+                        <p class="tracking-result-date">от <span id="resultOrderDate"></span></p>
+                    </div>
+                </div>
+
+                <div class="tracking-status-section">
+                    <div class="tracking-status-badge" id="resultStatusBadge">
+                        <span class="status-icon">
+                            <svg class="icon"><use href="#i-clock"/></svg>
+                        </span>
+                        <span class="status-text" id="resultStatusText"></span>
+                    </div>
+                    <p class="tracking-status-description" id="resultStatusDescription"></p>
+                </div>
+
+                <!-- Прогресс-бар статуса -->
+                <div class="tracking-progress" id="trackingProgress">
+                    <div class="progress-line">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                    <div class="progress-steps">
+                        <div class="progress-step" data-step="new">
+                            <div class="step-dot"></div>
+                            <span class="step-label">Принят</span>
+                        </div>
+                        <div class="progress-step" data-step="processing">
+                            <div class="step-dot"></div>
+                            <span class="step-label">В обработке</span>
+                        </div>
+                        <div class="progress-step" data-step="confirmed">
+                            <div class="step-dot"></div>
+                            <span class="step-label">Подтвёрден</span>
+                        </div>
+                        <div class="progress-step" data-step="shipped">
+                            <div class="step-dot"></div>
+                            <span class="step-label">Отправлен</span>
+                        </div>
+                        <div class="progress-step" data-step="delivered">
+                            <div class="step-dot"></div>
+                            <span class="step-label">Доставлен</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tracking-actions">
+                    <a href="contacts.html" class="btn btn--ghost">
+                        <svg class="icon"><use href="#i-support"/></svg>
+                        Связаться с нами
+                    </a>
+                    <a href="index.html" class="btn btn--secondary">
+                        Продолжить покупки
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Подсказки -->
+        <div class="tracking-tips">
+            <h3 class="tracking-tips-title">Где найти номер заказа?</h3>
+            <div class="tracking-tips-grid">
+                <div class="tracking-tip">
+                    <div class="tip-icon">
+                        <svg class="icon"><use href="#i-message"/></svg>
+                    </div>
+                    <div class="tip-content">
+                        <h4>В SMS-уведомлении</h4>
+                        <p>После оформления заказа мы отправляем SMS с номером заказа</p>
+                    </div>
+                </div>
+                <div class="tracking-tip">
+                    <div class="tip-icon">
+                        <svg class="icon"><use href="#i-email"/></svg>
+                    </div>
+                    <div class="tip-content">
+                        <h4>В личном кабинете</h4>
+                        <p>Если вы зарегистрированы, номер заказа доступен в разделе «Мои заказы»</p>
+                    </div>
+                </div>
+                <div class="tracking-tip">
+                    <div class="tip-icon">
+                        <svg class="icon"><use href="#i-phone"/></svg>
+                    </div>
+                    <div class="tip-content">
+                        <h4>У оператора</h4>
+                        <p>Позвоните нам по номеру <a href="tel:+998770794080">+998 77 079 40 80</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="container footer-inner">
+        <div class="footer-brand">
+            <a href="index.html" class="logo">DUO<span>STORE</span></a>
+            <p>Премиальная одежда и аксессуары<br>в стиле Old Money</p>
+        </div>
+        <div class="footer-links">
+            <a href="index.html#catalog">Каталог</a>
+            <a href="about.html">О нас</a>
+            <a href="delivery.html">Доставка</a>
+            <a href="contacts.html">Контакты</a>
+        </div>
+        <div class="footer-contacts">
+            <a href="tel:+998770794080">+998 77 079 40 80</a>
+            <a href="https://t.me/rusto69" target="_blank" rel="noopener">Telegram: @rusto69</a>
+        </div>
+    </div>
+    <div class="container">
+        <p class="footer-copy">&copy; 2026 DUO STORE. Все права защищены.</p>
+    </div>
+</footer>
+
+<!-- SVG спрайт иконок -->
+<svg class="sprite" aria-hidden="true"><symbol id="i-heart" viewBox="0 0 24 24"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0l-1 1-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1 7.8 7.8 7.8-7.8 1-1a5.5 5.5 0 0 0 0-7.8Z"/></symbol>
+    <symbol id="i-package" viewBox="0 0 24 24">
+        <path d="M16.5 9.4l-9-5.19M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+        <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+        <line x1="12" y1="22.08" x2="12" y2="12"/>
+    </symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24">
+        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+    </symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="10"/>
+        <polyline points="12 6 12 12 16 14"/>
+    </symbol>
+    <symbol id="i-alert" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="10"/>
+        <line x1="12" y1="8" x2="12" y2="12"/>
+        <line x1="12" y1="16" x2="12.01" y2="16"/>
+    </symbol>
+    <symbol id="i-message" viewBox="0 0 24 24">
+        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+    </symbol>
+    <symbol id="i-email" viewBox="0 0 24 24">
+        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+        <polyline points="22,6 12,13 2,6"/>
+    </symbol>
+    <symbol id="i-support" viewBox="0 0 24 24">
+        <path d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.002-6.004l-.041.041a3 3 0 0 0-.771.75"/>
+        <path d="M6 18.72a9.094 9.094 0 0 1-3.741-.479 3 3 0 0 1 4.002-6.004l.041.041a3 3 0 0 1 .771.75"/>
+        <path d="M21 12a9 9 0 0 1-9 9m9-9a9 9 0 0 0-9-9m9 9H3m9 9a9 9 0 0 1-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 0 1 9-9"/>
+    </symbol>
+    <symbol id="i-truck" viewBox="0 0 24 24">
+        <rect x="1" y="3" width="15" height="13"/>
+        <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/>
+        <circle cx="5.5" cy="18.5" r="2.5"/>
+        <circle cx="18.5" cy="18.5" r="2.5"/>
+    </symbol>
+    <symbol id="i-check-circle" viewBox="0 0 24 24">
+        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+        <polyline points="22 4 12 14.01 9 11.01"/>
+    </symbol>
+</svg>
+
+
+
+<script src="js/store-data.js"></script>
+<script src="script.js"></script>
+<script src="js/tracking.js"></script>
+</body>
+</html>

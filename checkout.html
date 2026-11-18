@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#25382D">
+    <title>Оформление заказа — DUO STORE</title>
+    <link rel="icon" href="images/product-placeholder.svg">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/checkout.css">
+    <link rel="stylesheet" href="css/store.css">
+</head>
+<body class="checkout-page">
+<a class="skip-link" href="#main">Перейти к содержимому</a>
+<header class="header header--minimal store-header">
+    <div class="container header-inner">
+        <a href="index.html" class="logo" aria-label="DUO STORE — главная">DUO<span>STORE</span></a>
+        <a href="index.html#catalog" class="btn btn-secondary checkout-back">В каталог</a>
+    </div>
+</header>
+
+<main id="main" class="checkout-main">
+    <div class="container">
+        <h1 class="checkout-title">Оформление заказа</h1>
+        <section class="catalog-empty store-page-state" id="checkoutEmpty" hidden>
+            <h2>В корзине пока нет товаров</h2>
+            <p>Добавьте товары, чтобы оформить заказ.</p>
+            <a class="btn btn-primary" href="index.html#catalog">Перейти в каталог</a>
+        </section>
+        <div class="checkout-grid" id="checkoutGrid" hidden>
+            <aside class="checkout-summary-section" aria-labelledby="summaryTitle">
+                <div class="checkout-summary">
+                    <div class="order-summary-head">
+                        <h2 class="checkout-summary-title" id="summaryTitle">Ваш заказ</h2>
+                        <button class="btn btn-secondary" type="button" id="editCart" aria-haspopup="dialog">Изменить</button>
+                    </div>
+                    <div class="checkout-items" id="checkoutItems"></div>
+                    <div class="checkout-total-row checkout-total-final">
+                        <span>Сумма товаров</span><strong id="checkoutSubtotal">0 сум</strong>
+                    </div>
+                    <div class="checkout-total-row"><span>Доставка</span><span id="checkoutShipping">Уточнит менеджер</span></div>
+                    <p class="store-muted">На сайте оплата не списывается. Итог с доставкой подтвердит менеджер.</p>
+                </div>
+                <div class="checkout-help">
+                    <p>Есть вопросы?</p>
+                    <a href="tel:+998770794080">Позвонить: +998 77 079 40 80</a>
+                </div>
+            </aside>
+            <div class="checkout-form-section">
+                <form id="checkoutForm" class="checkout-form" novalidate>
+                    <div class="form-section">
+                        <h2 class="form-section-title">Кому доставить</h2>
+                        <div class="form-group">
+                            <label for="customerName">Имя</label>
+                            <input type="text" id="customerName" name="name" autocomplete="name" required minlength="2" maxlength="80">
+                        </div>
+                        <div class="form-group">
+                            <label for="customerPhone">Телефон</label>
+                            <input type="tel" id="customerPhone" name="phone" autocomplete="tel" inputmode="tel" required maxlength="24" placeholder="+998 90 123 45 67">
+                        </div>
+                    </div>
+                    <div class="form-section">
+                        <h2 class="form-section-title">Куда доставить</h2>
+                        <div class="form-group">
+                            <label for="customerCity">Город</label>
+                            <input type="text" id="customerCity" name="city" autocomplete="address-level2" required minlength="2" maxlength="100" placeholder="Например, Ташкент">
+                        </div>
+                        <div class="form-group">
+                            <label for="customerAddress">Адрес</label>
+                            <textarea id="customerAddress" name="address" autocomplete="street-address" required minlength="5" maxlength="500" rows="2" placeholder="Улица, дом, квартира"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="customerComment">Комментарий <span class="store-muted">(необязательно)</span></label>
+                            <textarea id="customerComment" name="comment" maxlength="500" rows="2" placeholder="Например, удобное время доставки"></textarea>
+                        </div>
+                    </div>
+                    <p class="store-field-error order-error" id="orderError" role="alert" tabindex="-1" hidden></p>
+                    <a id="checkAttempt" class="store-text-link check-attempt" href="tracking.html" hidden>Проверить статус заказа</a>
+                    <button type="submit" class="btn btn-primary btn-full" id="submitOrderBtn">Подтвердить заказ</button>
+                    <p class="order-form-note">Имя, телефон и адрес нужны магазину для связи и доставки.</p>
+                </form>
+
+                <details class="order-telegram">
+                    <summary>Оформить в Telegram</summary>
+                    <p id="telegramDraftHint"></p>
+                    <label class="sr-only" for="telegramDraft">Текст черновика</label>
+                    <textarea id="telegramDraft" readonly rows="5"></textarea>
+                    <p class="store-muted">В черновике только товары из корзины. Адрес и телефон можно сообщить менеджеру в чате.</p>
+                    <div class="order-actions">
+                        <a class="btn btn-primary" id="telegramOpen" href="https://t.me/rusto69" target="_blank" rel="noopener noreferrer">Открыть Telegram</a>
+                        <button class="btn btn-secondary" type="button" id="copyDraft">Скопировать</button>
+                    </div>
+                    <p class="store-muted" id="copyDraftStatus" role="status"></p>
+                </details>
+            </div>
+        </div>
+        <section id="checkoutSuccess" class="order-receipt" aria-labelledby="receiptTitle" hidden>
+            <div class="order-receipt-icon" aria-hidden="true">✓</div>
+            <h2 id="receiptTitle" tabindex="-1">Заказ принят</h2>
+            <p>Номер заказа: <strong id="orderNumber"></strong></p>
+            <p>Менеджер свяжется с вами, чтобы подтвердить наличие, доставку и оплату.</p>
+            <div class="order-actions">
+                <a class="btn btn-primary" id="trackingLink" href="tracking.html">Отследить заказ</a>
+                <a class="btn btn-secondary" href="index.html#catalog">Продолжить покупки</a>
+            </div>
+        </section>
+        <noscript><p>Чтобы оформить заказ на сайте, включите JavaScript. Также можно <a class="store-text-link" href="https://t.me/rusto69">написать магазину в Telegram</a>.</p></noscript>
+    </div>
+</main>
+<footer class="footer footer--minimal">
+    <div class="container"><p>© 2026 DUO STORE · <a href="delivery.html">Доставка и возврат</a></p></div>
+</footer>
+
+<script src="js/supabaseClient.js" data-guest></script>
+<script src="js/store-data.js"></script>
+<script src="script.js"></script>
+<script src="js/checkout.js"></script>
+</body>
+</html>

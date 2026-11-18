@@ -1,0 +1,9 @@
+# DUO STORE — robots.txt
+User-agent: *
+Allow: /
+Disallow: /admin.html
+Disallow: /tgdata/
+Disallow: /js/admin.js
+Disallow: /js/migrate-products.js
+
+Sitemap: https://duostore.uz/sitemap.xml
